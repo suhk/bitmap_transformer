@@ -12,6 +12,7 @@ gulp.task('mocha', function() {
 gulp.task('watch-mocha', function() {
   gulp.watch(['lib/**', 'test/**'], ['mocha']);
 });
+
 var files = ['**', '**/*'];
 
 gulp.task('lint', function(){
@@ -20,4 +21,4 @@ gulp.task('lint', function(){
   .pipe(eslint.format());
 });
 
-gulp.task('default', ['lint', 'mocha', 'watch-mocha']);
+gulp.task('default', ['lint', 'watch-mocha']);
