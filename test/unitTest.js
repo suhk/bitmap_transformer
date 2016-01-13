@@ -10,14 +10,17 @@ describe('bitmap.darken unit', function(){
     config.bpp = 32;
     var testbuffer = new Buffer('22222222', 'hex');
     var resultbuffer = new Buffer('11111111', 'hex');
-    expect(bitmap.darken(testbuffer)).to.eql(testbuffer);
+    expect(bitmap.darken.call(config, testbuffer)).to.eql(resultbuffer);
   });
 });
 
 describe('bitmap.flip unit', function(){
     it('should flip low values high', function(){
-      var flipbuf = new Buffer('FFFFFFFF', 'hex');
+      var flipbuf = new Buffer('FFFFFF00', 'hex');
       var highbuffer = new Buffer('00000000', 'hex');
-      expect(bitmap.flip(highbuffer)).to.eql(flipbuf);
+      var config = config ? config : {};
+      config.startPixel = 0;
+      config.bpp = 32;
+      expect(bitmap.flip.call(config, highbuffer)).to.eql(flipbuf);
     });
 });
